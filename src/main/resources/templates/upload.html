@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Upload CSV</title>
+  </head>
+  <body>
+    <h1>Carica un file CSV</h1>
+    <form method="post" enctype="multipart/form-data" th:action="@{/upload}">
+      <input type="file" name="file" accept=".csv" required />
+      <button type="submit">Importa</button>
+    </form>
+    <p th:text="${message}"></p>
+  </body>
+</html>

@@ -1,28 +1,28 @@
-package com.java.csv_reader;
+// package com.java.csv_reader;
 
-import java.io.FileReader;
-import java.util.List;
+// import java.io.FileReader;
+// import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.CommandLineRunner;
+// import org.springframework.stereotype.Component;
 
-import com.opencsv.bean.CsvToBeanBuilder;
+// import com.opencsv.bean.CsvToBeanBuilder;
 
-@Component
-public class CsvImporter implements CommandLineRunner {
+// @Component
+// public class CsvImporter implements CommandLineRunner {
 
-    @Autowired
-    private ProductService productService;
+//     @Autowired
+//     private ProductService productService;
 
-    @Override
-    public void run(String... args) throws Exception {
-        List<Product> beans = new CsvToBeanBuilder<Product>(new FileReader("prodotti.csv"))
-            .withType(Product.class)
-            .build()
-            .parse();
+//     @Override
+//     public void run(String... args) throws Exception {
+//         List<Product> beans = new CsvToBeanBuilder<Product>(new FileReader("prodotti.csv"))
+//             .withType(Product.class)
+//             .build()
+//             .parse();
 
-        productService.saveAll(beans);
-        System.out.println("Importazione completata: " + beans.size() + " prodotti salvati.");
-    }
-}
+//         productService.saveAll(beans);
+//         System.out.println("Importazione completata: " + beans.size() + " prodotti salvati.");
+//     }
+// }
