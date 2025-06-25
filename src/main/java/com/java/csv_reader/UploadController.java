@@ -33,6 +33,7 @@ public class UploadController {
                 .parse();
             productService.saveAll(beans);
             model.addAttribute("message", "Importazione completata: " + beans.size() + " prodotti salvati.");
+            model.addAttribute("prodotti", beans);
         } catch (Exception e) {
             model.addAttribute("message", "Errore durante l'importazione: " + e.getMessage());
         }

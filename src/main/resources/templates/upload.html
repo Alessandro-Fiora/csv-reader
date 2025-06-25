@@ -1,14 +1,87 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      th:rel="stylesheet"
+      th:href="@{/webjars/bootstrap/5.3.5/css/bootstrap.min.css}"
+    />
+    <link
+      th:rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"
+    />
+    <link th:rel="stylesheet" th:href="@{/css/style.css}" />
     <title>Upload CSV</title>
   </head>
   <body>
-    <h1>Carica un file CSV</h1>
-    <form method="post" enctype="multipart/form-data" th:action="@{/upload}">
-      <input type="file" name="file" accept=".csv" required />
-      <button type="submit">Importa</button>
-    </form>
-    <p th:text="${message}"></p>
+    <div class="container">
+      <div class="mt-3">
+        <h1 class="">Carica il file .csv dei prodotti da inserire nel DB</h1>
+        <form
+          method="post"
+          enctype="multipart/form-data"
+          th:action="@{/upload}"
+        >
+          <div class="row">
+            <div class="col-10">
+              <input
+                class="form-control"
+                type="file"
+                name="file"
+                accept=".csv"
+                required
+              />
+            </div>
+            <div class="col-2">
+              <button type="submit" class="btn btn-primary">Importa</button>
+            </div>
+          </div>
+        </form>
+        <p th:text="${message}"></p>
+
+        <div th:if="${prodotti}" class="mt-5">
+          <h2 class="mt-2">Prodotti importati</h2>
+          <div class="table-responsive">
+            <table
+              id="prodottiTable"
+              class="table table-bordered table-striped"
+            >
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Barcode</th>
+                  <th>Brand</th>
+                  <th>Categoria</th>
+                  <th>Quantità</th>
+                  <th>Peso</th>
+                  <th>Prezzo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="prodotto : ${prodotti}">
+                  <td th:text="${prodotto.name}"></td>
+                  <td th:text="${prodotto.barcode}"></td>
+                  <td th:text="${prodotto.brand}"></td>
+                  <td th:text="${prodotto.category}"></td>
+                  <td th:text="${prodotto.quantity}"></td>
+                  <td th:text="${prodotto.weight}"></td>
+                  <td th:text="${prodotto.price}"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script th:src="@{/webjars/bootstrap/5.3.5/js/bootstrap.min.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script th:src="@{/js/datatable-init.js}"></script>
   </body>
 </html>
